@@ -1,5 +1,5 @@
 {
-  "name": "@lg2/react-native-eddystone",
+  "name": "@ms-v3/react-native-eddystone",
   "version": "0.1.5",
   "description": "A simple Eddystone implementation in React Native for both iOS and Android.",
   "main": "src/index.js",
@@ -11,13 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lg2/react-native-eddystone.git"
+    "url": "git+https://github.com/ms-v3/react-native-eddystone.git"
   },
   "keywords": ["react", "native", "eddystone"],
-  "author": "Nicholas Charbonneau <nicholas.charbonneau@lg2.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lg2/react-native-eddystone/issues"
+    "url": "https://github.com/ms-v3/react-native-eddystone/issues"
   },
-  "homepage": "https://github.com/lg2/react-native-eddystone#readme"
+  "homepage": "https://github.com/ms-v3/react-native-eddystone#readme"
 }

@@ -4,56 +4,23 @@
 
 # react-native-eddystone
 
-<img src="https://img.shields.io/npm/v/@lg2/react-native-eddystone.svg" /> <img src="https://img.shields.io/github/repo-size/lg2/react-native-eddystone.svg" /> <img src="https://img.shields.io/github/issues/lg2/react-native-eddystone.svg" /> <img src="https://img.shields.io/github/license/lg2/react-native-eddystone.svg" />
+<img src="https://img.shields.io/npm/v/@ms-v3/react-native-eddystone.svg" /> <img src="https://img.shields.io/github/repo-size/ms-v3/react-native-eddystone.svg" /> <img src="https://img.shields.io/github/issues/ms-v3/react-native-eddystone.svg" /> <img src="https://img.shields.io/github/license/ms-v3/react-native-eddystone.svg" />
 
 A simple Eddystone™ implementation in React Native for both iOS and Android. The library also include an opinionated beacon manager class that enables simple beacon telemetry linking, caching and expiration.
 
+## Disclaimer
+This package is being published out of necessity until the changes contained in it are published in the original library.
+
 ## Installation
 
-`$ npm install @lg2/react-native-eddystone --save`
-
-If your React Native version is below 0.60
-
-`$ react-native link @lg2/react-native-eddystone`
-
-### Manual installation (React Native < 0.60)
-
-#### iOS
-
-1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-2. Go to `node_modules` ➜ `@lg2` ➜ `react-native-eddystone` and add `Eddystone.xcodeproj`
-3. In XCode, in the project navigator, select your project. Add `libEddystone.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
-4. Run your project (`Cmd+R`)
-
-Alternatively, you can use Cocoapods like so:
-
-`pod 'Eddystone', :path => '../node_modules/@lg2/react-native-eddystone/ios'`
-
-#### Android
-
-1. Open up `android/app/src/main/java/[...]/MainApplication.java`
-
-    - Add `import com.lg2.eddystone.EddystonePackage;` to the imports at the top of the file
-    - Add `new EddystonePackage()` to the list returned by the `getPackages()` method
-
-2. Append the following lines to `android/settings.gradle`:
-
-   ```
-   include ':@lg2_react-native-eddystone'
-   project(':@lg2_react-native-eddystone').projectDir = new File(rootProject.projectDir, '../node_modules/@lg2/react-native-eddystone/android')
-   ```
-
-3. Insert the following lines inside the dependencies block in `android/app/build.gradle`:
-   ```
-   implementation project(':@lg2_react-native-eddystone')
-   ```
+`$ yarn add @ms-v3/react-native-eddystone`
 
 ## Usage
 
 This is a very simple example of how to listen to UID broadcastz from Eddystone beacons. For more examples, refer to the `examples` folder.
 
 ```javascript
-import Eddystone from "@lg2/react-native-eddystone";
+import Eddystone from "@ms-v3/react-native-eddystone";
 
 // bind a callback when detecting a uid frame
 Eddystone.addListener("onUIDFrame", function(beacon) {
