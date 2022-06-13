@@ -4,7 +4,7 @@
 
 # react-native-eddystone
 
-<img src="https://img.shields.io/npm/v/@ms-v3/react-native-eddystone.svg" /> <img src="https://img.shields.io/github/repo-size/ms-v3/react-native-eddystone.svg" /> <img src="https://img.shields.io/github/issues/ms-v3/react-native-eddystone.svg" /> <img src="https://img.shields.io/github/license/ms-v3/react-native-eddystone.svg" />
+<img src="https://img.shields.io/npm/v/@ms-v3/react-native-eddystone.svg" /> <img src="https://img.shields.io/github/repo-size/LucasMonteiro1/react-native-eddystone.svg" /> <img src="https://img.shields.io/github/issues/LucasMonteiro1/react-native-eddystone.svg" /> <img src="https://img.shields.io/github/license/LucasMonteiro1/react-native-eddystone.svg" />
 
 A simple Eddystone™ implementation in React Native for both iOS and Android. The library also include an opinionated beacon manager class that enables simple beacon telemetry linking, caching and expiration.
 

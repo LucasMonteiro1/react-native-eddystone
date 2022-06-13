@@ -1,6 +1,6 @@
 {
   "name": "@ms-v3/react-native-eddystone",
-  "version": "0.1.5",
+  "version": "0.0.2",
   "description": "A simple Eddystone implementation in React Native for both iOS and Android.",
   "main": "src/index.js",
   "directories": {
@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ms-v3/react-native-eddystone.git"
+    "url": "git+https://github.com/LucasMonteiro1/react-native-eddystone.git"
   },
   "keywords": ["react", "native", "eddystone"],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ms-v3/react-native-eddystone/issues"
+    "url": "https://github.com/LucasMonteiro1/react-native-eddystone/issues"
   },
-  "homepage": "https://github.com/ms-v3/react-native-eddystone#readme"
+  "homepage": "https://github.com/LucasMonteiro1/react-native-eddystone/tree/publish#readme"
 }
