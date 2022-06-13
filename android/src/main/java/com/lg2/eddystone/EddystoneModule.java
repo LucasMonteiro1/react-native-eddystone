@@ -11,6 +11,7 @@
 
 package com.lg2.eddystone;
 
+import com.facebook.react.bridge.LifecycleEventListener;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
@@ -23,11 +24,14 @@ import android.content.*;
 import android.bluetooth.*;
 import android.bluetooth.le.*;
 import android.os.ParcelUuid;
+import android.content.Context;
 
 import java.util.List;
 import java.util.ArrayList;
 
-public class EddystoneModule extends ReactContextBaseJavaModule {
+import com.facebook.react.HeadlessJsTaskService;
+
+public class EddystoneModule extends ReactContextBaseJavaModule implements LifecycleEventListener{
   /** @property {ReactApplicationContext} The react app context */
   private final ReactApplicationContext reactContext;
 
@@ -58,6 +62,8 @@ public class EddystoneModule extends ReactContextBaseJavaModule {
   /** @property byte Empty frame type byte identifier */
   public static final byte FRAME_TYPE_EMPTY = 0x40;
 
+  public boolean isClosed = false;
+
   /**
    * EddystoneModule class constructor
    *
@@ -68,8 +74,17 @@ public class EddystoneModule extends ReactContextBaseJavaModule {
   public EddystoneModule(ReactApplicationContext reactContext) {
     super(reactContext);
     this.reactContext = reactContext;
+    reactContext.addLifecycleEventListener(this);
     bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
   }
+
+   public boolean isClosed() {
+        return isClosed;
+    }
+
+    public void setIsClosed(boolean closed) {
+        isClosed = closed;
+    }
 
   /**
    * Returns the name of the module
@@ -92,6 +107,15 @@ public class EddystoneModule extends ReactContextBaseJavaModule {
    */
   private void emit(String event, Object params) {
     reactContext.getJSModule(RCTDeviceEventEmitter.class).emit(event, params);
+  }
+
+  private void emitHeadlessEvent(String event, Object params) {
+    if(isClosed() && event == "onUIDFrame" && params.toString().contains("ffffffff")) {
+      Context context = reactContext.getApplicationContext();
+      Intent myIntent = new Intent(context, EddystoneEventService.class);
+      context.startService(myIntent);
+      HeadlessJsTaskService.acquireWakeLockNow(context);
+    }
   }
 
   /**
@@ -233,7 +257,11 @@ public class EddystoneModule extends ReactContextBaseJavaModule {
         params.putInt("rssi", result.getRssi());
 
         // dispatch event
-        emit(event, params);
+        if (isClosed()){
+          emitHeadlessEvent(event, params);
+        } else {
+          emit(event, params);
+        }
       } else if (frameType == FRAME_TYPE_URL) {
 
         // build the url from the frame's bytes
@@ -271,6 +299,21 @@ public class EddystoneModule extends ReactContextBaseJavaModule {
       }
     }
   };
+
+  @Override
+  public void onHostResume() {
+      this.setIsClosed(false);
+  }
+
+  @Override
+  public void onHostPause() {
+      this.setIsClosed(false);
+  }
+
+  @Override
+  public void onHostDestroy() {
+      this.setIsClosed(true);
+  }
 
   /**
    * Starts scanning for Eddystone beacons
