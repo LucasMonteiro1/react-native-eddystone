@@ -1,6 +1,6 @@
 {
   "name": "@ms-v3/react-native-eddystone",
-  "version": "0.4.0",
+  "version": "0.0.4",
   "description": "A simple Eddystone implementation in React Native for both iOS and Android.",
   "main": "src/index.js",
   "directories": {
